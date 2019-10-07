@@ -8,136 +8,141 @@ package ku.piii2019.worksheet3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  *
  * @author James
  */
-@Ignore
-@RunWith(Parameterized.class)
+@Disabled
 public class TesterForQuestions1and2 {
 
-    @Parameterized.Parameters
-    public static Collection<Object[]> instancesToTest() {
-        
-        Collection<Object[]> listOfInstances = new ArrayList<>();
+
+    public static Stream<PowerCalc> instancesToTest() {
+
+        Collection<PowerCalc> listOfInstances = new ArrayList<>();
         // for Question 1:
-        listOfInstances.add(new Object[]{new OldSchoolPowerCalc()});
+        listOfInstances.add(new OldSchoolPowerCalc());
         // for Question 2: 
-//        listOfInstances.add(new Object[]{new Java8PowerCalc()});
-        
-        return listOfInstances;
+        listOfInstances.add(new Java8PowerCalc());
+        // return listOfInstances;
+        return listOfInstances.stream();
+
     }
-    
-    PowerCalc instance = null;
-          
-    public TesterForQuestions1and2(PowerCalc testThisOneNext) {
-       instance =  testThisOneNext;
-    }
-    
-    @BeforeClass
+
+    @BeforeAll
     public static void setUpClass() {
     }
-    
-    @AfterClass
+
+    @AfterAll
     public static void tearDownClass() {
     }
-    
-    @Before
+
+    @BeforeEach
     public void setUp() {
     }
-    
-    @After
+
+    @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of getListOfIntegers method, of classes implementing the PowerCalc interface
+     * Test of getListOfIntegers method, of classes implementing the PowerCalc
+     * interface
+     *
+     * @param argInstance
      */
-    @Test
-    public void testGetListOfIntegers() {
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetListOfIntegers(PowerCalc argInstance) {
         System.out.println("getListOfIntegers");
         int start = 5;
         int finish = 9;
-        List<Integer> expResult = Arrays.asList(5,6,7,8,9);
-        List<Integer> result = instance.getListOfIntegers(start, finish);
+        List<Integer> expResult = Arrays.asList(5, 6, 7, 8, 9);
+        List<Integer> result = argInstance.getListOfIntegers(start, finish);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of printThisList method, of classes implementing the PowerCalc interface
+     * Test of printThisList method, of classes implementing the PowerCalc
+     * interface
      */
-    @Test
-    public void testPrintThisList() {
+    // @Test
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testPrintThisList(PowerCalc argInstance) {
         System.out.println("printThisList");
-        List<Integer> thisList = Arrays.asList(5,6,7,8,9);
+        List<Integer> thisList = Arrays.asList(5, 6, 7, 8, 9);
 
-        instance.printThisList(thisList);
-        
+        argInstance.printThisList(thisList);
+
         // to test this we can use the System.setOut() method
         // contributions welcome! 
-        
     }
 
     /**
-     * Test of getEvenNumbers method, of classes implementing the PowerCalc interface
+     * Test of getEvenNumbers method, of classes implementing the PowerCalc
+     * interface
      */
-    @Test
-    public void testGetEvenNumbers() {
+    // @Test
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetEvenNumbers(PowerCalc argInstance) {
         System.out.println("getEvenNumbers");
-        List<Integer> inThisList = Arrays.asList(5,6,7,8,9);
+        List<Integer> inThisList = Arrays.asList(5, 6, 7, 8, 9);
 
-        List<Integer> expResult = Arrays.asList(6,8);
-        List<Integer> result = instance.getEvenNumbers(inThisList);
+        List<Integer> expResult = Arrays.asList(6, 8);
+        List<Integer> result = argInstance.getEvenNumbers(inThisList);
         assertEquals(expResult, result);
 
-        List<Integer> checkOriginalNotChanged = Arrays.asList(5,6,7,8,9);
+        List<Integer> checkOriginalNotChanged = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(checkOriginalNotChanged, inThisList);
 
     }
 
     /**
-     * Test of getOddNumbers method, of classes implementing the PowerCalc interface
+     * Test of getOddNumbers method, of classes implementing the PowerCalc
+     * interface
      */
-    @Test
-    public void testGetOddNumbers() {
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetOddNumbers(PowerCalc argInstance) {
         System.out.println("getOddNumbers");
-        List<Integer> inThisList = Arrays.asList(5,6,7,8,9);
+        List<Integer> inThisList = Arrays.asList(5, 6, 7, 8, 9);
 
-        List<Integer> expResult = Arrays.asList(5,7,9);
-        List<Integer> result = instance.getOddNumbers(inThisList);
+        List<Integer> expResult = Arrays.asList(5, 7, 9);
+        List<Integer> result = argInstance.getOddNumbers(inThisList);
         assertEquals(expResult, result);
 
-        List<Integer> checkOriginalNotChanged = Arrays.asList(5,6,7,8,9);
+        List<Integer> checkOriginalNotChanged = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(checkOriginalNotChanged, inThisList);
     }
 
     /**
-     * Test of getNumbersBiggerThan method, of classes implementing the PowerCalc interface
+     * Test of getNumbersBiggerThan method, of classes implementing the
+     * PowerCalc interface
      */
-    @Test
-    public void testGetNumbersBiggerThan() {
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetNumbersBiggerThan(PowerCalc argInstance) {
         System.out.println("getNumbersBiggerThan");
         int thisNumber = 7;
-        List<Integer> fromThisList = Arrays.asList(5,6,7,8,9);
+        List<Integer> fromThisList = Arrays.asList(5, 6, 7, 8, 9);
 
-        List<Integer> expResult = Arrays.asList(8,9);
-        List<Integer> result = instance.getNumbersBiggerThan(thisNumber, fromThisList);
+        List<Integer> expResult = Arrays.asList(8, 9);
+        List<Integer> result = argInstance.getNumbersBiggerThan(thisNumber, fromThisList);
         assertEquals(expResult, result);
 
-        List<Integer> checkOriginalNotChanged = Arrays.asList(5,6,7,8,9);
+        List<Integer> checkOriginalNotChanged = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(checkOriginalNotChanged, fromThisList);
 
     }
@@ -145,16 +150,17 @@ public class TesterForQuestions1and2 {
     /**
      * Test of getSum method, of classes implementing the PowerCalc interface
      */
-    @Test
-    public void testGetSum() {
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetSum(PowerCalc argInstance) {
         System.out.println("getSum");
-        List<Integer> inThisList = Arrays.asList(5,6,7,8,9);
+        List<Integer> inThisList = Arrays.asList(5, 6, 7, 8, 9);
 
         int expResult = 35;
-        int result = instance.getSum(inThisList);
+        int result = argInstance.getSum(inThisList);
         assertEquals(expResult, result);
 
-        List<Integer> checkOriginalNotChanged = Arrays.asList(5,6,7,8,9);
+        List<Integer> checkOriginalNotChanged = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(checkOriginalNotChanged, inThisList);
 
     }
@@ -162,16 +168,17 @@ public class TesterForQuestions1and2 {
     /**
      * Test of getRange method, of classes implementing the PowerCalc interface
      */
-    @Test
-    public void testGetRange() {
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetRange(PowerCalc argInstance) {
         System.out.println("getRange");
-        List<Integer> inThisList = Arrays.asList(5,6,7,8,9);
+        List<Integer> inThisList = Arrays.asList(5, 6, 7, 8, 9);
 
         int expResult = 4;
-        int result = instance.getRange(inThisList);
+        int result = argInstance.getRange(inThisList);
         assertEquals(expResult, result);
 
-        List<Integer> checkOriginalNotChanged = Arrays.asList(5,6,7,8,9);
+        List<Integer> checkOriginalNotChanged = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(checkOriginalNotChanged, inThisList);
 
     }
@@ -179,20 +186,21 @@ public class TesterForQuestions1and2 {
     /**
      * Test of isPresent method, of classes implementing the PowerCalc interface
      */
-    @Test
-    public void testIsPresent() {
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testIsPresent(PowerCalc argInstance) {
         System.out.println("isPresent");
-        List<Integer> inThisList = Arrays.asList(5,6,7,8,9);
+        List<Integer> inThisList = Arrays.asList(5, 6, 7, 8, 9);
         int thisNumber = 0;
         boolean expResult = false;
-        boolean result = instance.isPresent(thisNumber, inThisList);
+        boolean result = argInstance.isPresent(thisNumber, inThisList);
         assertEquals(expResult, result);
         thisNumber = 9;
         expResult = true;
-        result = instance.isPresent(thisNumber, inThisList);
+        result = argInstance.isPresent(thisNumber, inThisList);
         assertEquals(expResult, result);
 
-        List<Integer> checkOriginalNotChanged = Arrays.asList(5,6,7,8,9);
+        List<Integer> checkOriginalNotChanged = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(checkOriginalNotChanged, inThisList);
 
     }

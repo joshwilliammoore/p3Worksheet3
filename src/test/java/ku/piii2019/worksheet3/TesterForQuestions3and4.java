@@ -5,69 +5,68 @@
  */
 package ku.piii2019.worksheet3;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  *
  * @author James
  */
-@Ignore
-@RunWith(Parameterized.class)
+@Disabled
 public class TesterForQuestions3and4 {
+//
+    public static Stream<PowerCalc> instancesToTest() {
 
-    @Parameterized.Parameters
-    public static Collection<Object[]> instancesToTest() {
-        
-        Collection<Object[]> listOfInstances = new ArrayList<>();
+        Collection<PowerCalc> listOfInstances = new ArrayList<>();
         // for Question 1:
-        listOfInstances.add(new Object[]{new OldSchoolPowerCalc()});
+        listOfInstances.add(new OldSchoolPowerCalc());
         // for Question 2: 
-//        listOfInstances.add(new Object[]{new Java8PowerCalc()});
-        
-        return listOfInstances;
+        listOfInstances.add(new Java8PowerCalc());
+        // return listOfInstances;
+        return listOfInstances.stream();
+
     }
-    
-    PowerCalc instance = null;
-          
-    public TesterForQuestions3and4(PowerCalc testThisOneNext) {
-       instance =  testThisOneNext;
-    }
-    
-    @BeforeClass
+
+    @BeforeAll
     public static void setUpClass() {
     }
-    
-    @AfterClass
+
+    @AfterAll
     public static void tearDownClass() {
     }
-    
-    @Before
+
+    @BeforeEach
     public void setUp() {
     }
-    
-    @After
+
+    @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of getListOfIntegers method, of class PowerCalc.
+     * Test of getListOfIntegers method, of classes implementing the PowerCalc
+     * interface
+     *
+     * @param argInstance
      */
-    @Test
-    public void testGetListOfIntegers() {
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetListOfIntegers(PowerCalc instance) {
         System.out.println("getListOfIntegers");
         int start = 5;
         int finish = 9;
@@ -76,11 +75,13 @@ public class TesterForQuestions3and4 {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of printThisList method, of class PowerCalc.
-     */
-    @Test
-    public void testPrintThisList() {
+//    /**
+//     * Test of printThisList method, of class PowerCalc.
+//     */
+//    @Test
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testPrintThisList(PowerCalc instance) {
         System.out.println("printThisList");
         List<Integer> thisList = Arrays.asList(5,6,7,8,9);
 
@@ -90,13 +91,14 @@ public class TesterForQuestions3and4 {
         // contributions welcome! 
         
     }
-
-
-    /**
-     * Test of getRandomNumbers method, of class PowerCalc.
-     */
-    @Test
-    public void testGetRandomNumbers() {
+//
+//
+//    /**
+//     * Test of getRandomNumbers method, of class PowerCalc.
+//     */
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetRandomNumbers(PowerCalc instance) {
         System.out.println("getRandomNumbers");
         int smallest = -10;
         int biggest = -5;
@@ -111,11 +113,12 @@ public class TesterForQuestions3and4 {
         
     }
 
-    /**
-     * Test of removeDuplicates method, of class PowerCalc.
-     */
-    @Test
-    public void testRemoveDuplicates() {
+//    /**
+//     * Test of removeDuplicates method, of class PowerCalc.
+//     */
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testRemoveDuplicates(PowerCalc instance) {
         System.out.println("removeDuplicates");
         List<Integer> inThisList = Arrays.asList(5,5,7,6,5,7);
 
@@ -128,11 +131,12 @@ public class TesterForQuestions3and4 {
 
     }
 
-    /**
-     * Test of getSortedList method, of class PowerCalc.
-     */
-    @Test
-    public void testGetSortedList() {
+//    /**
+//     * Test of getSortedList method, of class PowerCalc.
+//     */
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetSortedList(PowerCalc instance) {
         System.out.println("getSortedList");
         List<Integer> usingThisList = Arrays.asList(5,6,7,4,3);
         List<Integer> checkOriginalNotChanged = Arrays.asList(5,6,7,4,3);
@@ -150,11 +154,12 @@ public class TesterForQuestions3and4 {
         assertEquals(checkOriginalNotChanged, usingThisList);
     }
 
-    /**
-     * Test of getNumOccurrences method, of class PowerCalc.
-     */
-    @Test
-    public void testGetNumOccurrences() {
+//    /**
+//     * Test of getNumOccurrences method, of class PowerCalc.
+//     */
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testGetNumOccurrences(PowerCalc instance) {
         System.out.println("getNumOccurrences");
         List<Integer> inThisList = Arrays.asList(7,4,7,6,7);
         int thisNumber = 7;
@@ -172,11 +177,12 @@ public class TesterForQuestions3and4 {
 
     }
 
-    /**
-     * Test of addTwoLists method, of class PowerCalc.
-     */
-    @Test
-    public void testAddTwoLists() {
+//    /**
+//     * Test of addTwoLists method, of class PowerCalc.
+//     */
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testAddTwoLists(PowerCalc instance) {
         System.out.println("addTwoLists");
         List<Integer> listA = Arrays.asList(101,102,103,104,105);
         List<Integer> listB = Arrays.asList(1,2,3,4,5);
@@ -200,11 +206,12 @@ public class TesterForQuestions3and4 {
                
     }
 
-    /**
-     * Test of mapTheseLists method, of class PowerCalc.
-     */
-    @Test
-    public void testMapTheseLists() {
+//    /**
+//     * Test of mapTheseLists method, of class PowerCalc.
+//     */
+    @ParameterizedTest
+    @MethodSource("instancesToTest")
+    public void testMapTheseLists(PowerCalc instance) {
         System.out.println("mapTheseLists");
         List<Integer> listOfKeys = Arrays.asList(101,102,103,104,105);;
         List<Integer> listOfValues = Arrays.asList(1,2,3,4,5);
@@ -222,4 +229,5 @@ public class TesterForQuestions3and4 {
         
         
     }
+   
 }
