@@ -38,32 +38,84 @@ public class OldSchoolPowerCalc implements PowerCalc {
 
     @Override
     public List<Integer> getEvenNumbers(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Integer> result = new ArrayList<>();
+        for(Integer x : inThisList){
+            if(x%2==0){
+                result.add(x);
+            }
+        }
+        System.out.println(result);
+        return result;
     }
 
     @Override
     public List<Integer> getOddNumbers(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Integer> result = new ArrayList<>();
+        for(Integer x : inThisList){
+            if(x%2!=0){
+                result.add(x);
+            }
+        }
+        System.out.println(result);
+        return result;
     }
 
     @Override
     public List<Integer> getNumbersBiggerThan(int thisNumber, List<Integer> fromThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Integer> result = new ArrayList<>();
+        for(Integer x : fromThisList){
+            if(x>thisNumber){
+                result.add(x);
+            }
+        }
+        System.out.println(result);
+        return result;
     }
 
     @Override
     public boolean isPresent(int thisNumber, List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        for(Integer x : inThisList){
+            if(x==thisNumber){
+                result = true;
+            }
+        }
+        System.out.println(result);
+        return result;
     }
 
     @Override
     public int getSum(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int result = 0;
+        for(Integer x : inThisList){
+            result = result + x;
+        }
+        System.out.println(result);
+        return result;
     }
 
     @Override
     public int getRange(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int result = 0;
+        int biggest = inThisList.get(0);
+        int smallest = inThisList.get(0);
+        for(Integer x : inThisList){
+            if(x>biggest){
+                biggest = x;
+            }
+            if(x<smallest){
+                smallest = x;
+            }
+        }
+        result = biggest-smallest;
+        System.out.println(result);
+        return result;
     }
 
     @Override
