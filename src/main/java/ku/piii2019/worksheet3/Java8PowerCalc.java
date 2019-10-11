@@ -32,7 +32,8 @@ public class Java8PowerCalc implements PowerCalc{
 
     @Override
     public List<Integer> getEvenNumbers(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Stream<Integer> result = IntStream.of(inThisList).boxed();
     }
 
     @Override
