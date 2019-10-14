@@ -99,11 +99,17 @@ public class TesterForQuestions1and2 {
     public void testGetEvenNumbers(PowerCalc argInstance) {
         System.out.println("getEvenNumbers");
         List<Integer> inThisList = Arrays.asList(5, 6, 7, 8, 9);
-
+        
         List<Integer> expResult = Arrays.asList(6, 8);
         List<Integer> result = argInstance.getEvenNumbers(inThisList);
         assertEquals(expResult, result);
-
+        
+        /*if(expResult != result){
+            fail("Wrong answer");
+        }else{
+            System.out.println(result);
+        }*/
+        
         List<Integer> checkOriginalNotChanged = Arrays.asList(5, 6, 7, 8, 9);
         assertEquals(checkOriginalNotChanged, inThisList);
 
