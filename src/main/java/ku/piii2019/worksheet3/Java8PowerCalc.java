@@ -7,6 +7,7 @@ package ku.piii2019.worksheet3;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -33,22 +34,30 @@ public class Java8PowerCalc implements PowerCalc{
     @Override
     public List<Integer> getEvenNumbers(List<Integer> inThisList) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Stream<Integer> result = IntStream.of(inThisList).boxed();
+        Stream<Integer> s = inThisList.stream().filter(n -> n%2==0);
+        return s.collect(Collectors.toList());
     }
 
     @Override
     public List<Integer> getOddNumbers(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Stream<Integer> s = inThisList.stream().filter(n -> n%2!=0);
+        return s.collect(Collectors.toList());
     }
 
     @Override
     public List<Integer> getNumbersBiggerThan(int thisNumber, List<Integer> fromThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Stream<Integer> s = fromThisList.stream().filter(n -> n%2>thisNumber);
+        return s.collect(Collectors.toList());
     }
 
     @Override
     public boolean isPresent(int thisNumber, List<Integer> inThisList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*Predicate<PowerCalc> a = a -> a.isPresent(thisNumber,inThisList);
+        boolean s = inThisList.stream().anyMatch(a);
+        return s;*/
     }
 
     @Override
