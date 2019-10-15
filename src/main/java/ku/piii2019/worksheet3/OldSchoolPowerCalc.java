@@ -5,6 +5,7 @@
  */
 package ku.piii2019.worksheet3;
 
+import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -196,7 +197,14 @@ public class OldSchoolPowerCalc implements PowerCalc {
 
     @Override
     public List<Integer> getRandomNumbers(int smallest, int biggest, int thisMany) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Integer> result = new ArrayList<>();
+        for(int i=0+1;i<thisMany;i++){
+            //int temp = Random().nextInt(biggest-smallest+1)+smallest;
+            double temp = Math.random();
+            result.add((int)(temp*((biggest - smallest)+1)+smallest));
+        }
+        System.out.println(result);
+        return result;
     }
 }
