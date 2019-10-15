@@ -7,7 +7,6 @@ package ku.piii2019.worksheet3;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -48,21 +47,22 @@ public class Java8PowerCalc implements PowerCalc{
     @Override
     public List<Integer> getNumbersBiggerThan(int thisNumber, List<Integer> fromThisList) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Stream<Integer> s = fromThisList.stream().filter(n -> n%2>thisNumber);
+        Stream<Integer> s = fromThisList.stream().filter(n -> n>thisNumber);
         return s.collect(Collectors.toList());
     }
 
     @Override
     public boolean isPresent(int thisNumber, List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /*Predicate<PowerCalc> a = a -> a.isPresent(thisNumber,inThisList);
-        boolean s = inThisList.stream().anyMatch(a);
-        return s;*/
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = inThisList.stream().anyMatch(n ->n==thisNumber);
+        return result;
     }
 
     @Override
     public int getSum(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int result = inThisList.stream().reduce(0,Integer::sum);
+        return result;
     }
 
     @Override
