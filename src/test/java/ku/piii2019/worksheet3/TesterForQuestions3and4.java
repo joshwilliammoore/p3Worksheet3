@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author James
  */
-@Disabled
+//@Disabled
 public class TesterForQuestions3and4 {
 //
     public static Stream<PowerCalc> instancesToTest() {
@@ -146,12 +146,16 @@ public class TesterForQuestions3and4 {
         List<Integer> result = instance.getSortedList(usingThisList, biggestFirst);
         assertEquals(expResult, result);
         assertEquals(checkOriginalNotChanged, usingThisList);
+        System.out.println(result);
+        System.out.println(expResult);
 
         biggestFirst = true;
         expResult = Arrays.asList(7,6,5,4,3);
         result = instance.getSortedList(usingThisList, biggestFirst);
         assertEquals(expResult, result);
         assertEquals(checkOriginalNotChanged, usingThisList);
+        System.out.println(result);
+        System.out.println(expResult);
     }
 
 //    /**
