@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -136,26 +137,25 @@ public class OldSchoolPowerCalc implements PowerCalc {
     public List<Integer> getSortedList(List<Integer> usingThisList, boolean biggestFirst) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<Integer> result = new ArrayList<>(usingThisList);
-        int temp = 0;
-        for(Integer x : result){
-            if(biggestFirst == false){
-                for(Integer y : result){
-                    if(x>y){
-                        temp = x;
-                        x = y;
-                        y = temp;
+        Integer temp = 0;
+        for(int i=0;i<usingThisList.size();i++){
+            for(int j=0;j<usingThisList.size();j++){
+                if(biggestFirst==true){
+                    if(usingThisList.get(i)>usingThisList.get(j)){
+                        temp = usingThisList.get(i);
+                        usingThisList.add(i,usingThisList.get(j));
+                        usingThisList.add(j,temp);
                     }
-                }
-            }else if(biggestFirst == true){
-                for(Integer a : result){
-                    if(x<a){
-                        temp = x;
-                        x = a;
-                        a = temp;
+                }else if(biggestFirst==false){
+                    if(usingThisList.get(i)<usingThisList.get(j)){
+                        temp = usingThisList.get(i);
+                        usingThisList.add(i,usingThisList.get(j));
+                        usingThisList.add(j,temp);
                     }
-                }
+                }    
             }
         }
+        
         System.out.println(result);
         return result;
     }
@@ -176,9 +176,27 @@ public class OldSchoolPowerCalc implements PowerCalc {
     @Override
     public List<Integer> addTwoLists(List<Integer> listA, List<Integer> listB) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        List<Integer> result = new ArrayList<>();
-        for(int i=0;i<listA.size();i++){
-            result.add(listA.get(i)+listB.get(i));
+        List<Integer> result = new LinkedList<>();
+        if(listA.size()==listB.size()){
+            for(int i=0;i<listA.size();i++){
+                result.add(listA.get(i)+listB.get(i));
+            }
+        }else if(listA.size()>listB.size()){
+            for(int i=0;i<listA.size();i++){
+                if(listB.size()-i>=0){
+                    result.add(listA.get(i)+listB.get(i));
+                }else{
+                    result.add(listA.get(i));
+                }
+            }
+        }else{
+            for(int i=0;i<listB.size();i++){
+                if(listA.size()-i>=0){
+                    result.add(listB.get(i)+listA.get(i));
+                }else{
+                    result.add(listB.get(i));
+                }
+            }
         }
         System.out.println(result);
         return result;
@@ -199,10 +217,13 @@ public class OldSchoolPowerCalc implements PowerCalc {
     public List<Integer> getRandomNumbers(int smallest, int biggest, int thisMany) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<Integer> result = new ArrayList<>();
-        for(int i=0+1;i<thisMany;i++){
+        for(int i=0;i<thisMany;i++){
             //int temp = Random().nextInt(biggest-smallest+1)+smallest;
-            double temp = Math.random();
-            result.add((int)(temp*((biggest - smallest)+1)+smallest));
+            /*double temp = Math.random();
+            result.add((int)(temp*((biggest - smallest)+1)+smallest));*/
+            Random rand = new Random();
+            int temp = rand.nextInt(biggest-smallest)+smallest;
+            result.add(temp);
         }
         System.out.println(result);
         return result;
