@@ -5,6 +5,8 @@
  */
 package ku.piii2019.worksheet3;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -67,17 +69,30 @@ public class Java8PowerCalc implements PowerCalc{
 
     @Override
     public int getRange(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int max = inThisList.stream().max(Comparator.naturalOrder()).get();
+        int min = inThisList.stream().min(Comparator.naturalOrder()).get();
+        return max-min;
+        
     }
 
     @Override
     public List<Integer> removeDuplicates(List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Integer> result = inThisList.stream().distinct().collect(Collectors.toList());
+        return result;
     }
 
     @Override
     public List<Integer> getSortedList(List<Integer> usingThisList, boolean biggestFirst) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Integer> result = new ArrayList<>();
+        if(biggestFirst==true){
+            result = usingThisList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        }else if(biggestFirst==false){
+            result = usingThisList.stream().sorted().collect(Collectors.toList());
+        }
+        return result;
     }
 
     @Override
