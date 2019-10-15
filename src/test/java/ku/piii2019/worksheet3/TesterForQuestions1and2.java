@@ -23,7 +23,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author James
  */
-@Disabled
+//@Disabled
 public class TesterForQuestions1and2 {
 
 
@@ -34,7 +34,7 @@ public class TesterForQuestions1and2 {
         listOfInstances.add(new OldSchoolPowerCalc());
         // for Question 2: 
         listOfInstances.add(new Java8PowerCalc());
-        // return listOfInstances;
+         //return listOfInstances;
         return listOfInstances.stream();
 
     }
