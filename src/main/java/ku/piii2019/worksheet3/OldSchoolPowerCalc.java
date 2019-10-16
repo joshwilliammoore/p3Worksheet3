@@ -47,7 +47,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
                 result.add(x);
             }
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -60,7 +60,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
                 result.add(x);
             }
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -73,7 +73,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
                 result.add(x);
             }
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -86,7 +86,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
                 result = true;
             }
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -97,7 +97,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
         for(Integer x : inThisList){
             result = result + x;
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -116,7 +116,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
             }
         }
         result = biggest-smallest;
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -129,7 +129,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
                 result.add(x);
             }
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -137,26 +137,34 @@ public class OldSchoolPowerCalc implements PowerCalc {
     public List<Integer> getSortedList(List<Integer> usingThisList, boolean biggestFirst) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<Integer> result = new ArrayList<>(usingThisList);
-        Integer temp = 0;
-        for(int i=0;i<usingThisList.size();i++){
-            for(int j=0;j<usingThisList.size();j++){
+        int temp = 0;
+        
+        for(int i=0;i<result.size();i++){
+            for(int j=0;j<result.size();j++){
                 if(biggestFirst==true){
-                    if(usingThisList.get(i)>usingThisList.get(j)){
-                        temp = usingThisList.get(i);
-                        usingThisList.add(i,usingThisList.get(j));
-                        usingThisList.add(j,temp);
+                    if(result.get(i)>result.get(j)){
+                        temp = result.get(i);
+                        result.set(i,result.get(j));
+                        result.set(j,temp);
                     }
                 }else if(biggestFirst==false){
-                    if(usingThisList.get(i)<usingThisList.get(j)){
-                        temp = usingThisList.get(i);
-                        usingThisList.add(i,usingThisList.get(j));
-                        usingThisList.add(j,temp);
+                    if(result.get(i)<result.get(j)){
+                        temp = result.get(i);
+                        result.set(i,result.get(j));
+                        result.set(j,temp);
                     }
                 }    
             }
         }
         
-        System.out.println(result);
+        /*if(biggestFirst==true){
+            Collections.sort(result);
+            Collections.reverse(result);
+        }else if(biggestFirst==false){
+                Collections.sort(result);
+        }*/
+        
+        //System.out.println(result);
         return result;
     }
 
@@ -169,21 +177,21 @@ public class OldSchoolPowerCalc implements PowerCalc {
                 result = result + 1;
             }
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
     @Override
     public List<Integer> addTwoLists(List<Integer> listA, List<Integer> listB) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        List<Integer> result = new LinkedList<>();
+        List<Integer> result = new ArrayList<>();
         if(listA.size()==listB.size()){
             for(int i=0;i<listA.size();i++){
                 result.add(listA.get(i)+listB.get(i));
             }
         }else if(listA.size()>listB.size()){
             for(int i=0;i<listA.size();i++){
-                if(listB.size()-i>=0){
+                if(listB.size()-i>0){
                     result.add(listA.get(i)+listB.get(i));
                 }else{
                     result.add(listA.get(i));
@@ -191,14 +199,14 @@ public class OldSchoolPowerCalc implements PowerCalc {
             }
         }else{
             for(int i=0;i<listB.size();i++){
-                if(listA.size()-i>=0){
+                if(listA.size()-i>0){
                     result.add(listB.get(i)+listA.get(i));
                 }else{
                     result.add(listB.get(i));
                 }
             }
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 
@@ -209,7 +217,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
         for(int i=0;i<listOfKeys.size();i++){
             map.put(listOfKeys.get(i), listOfValues.get(i));
         }
-        System.out.println(map);
+        //System.out.println(map);
         return map;
     }
 
@@ -225,7 +233,7 @@ public class OldSchoolPowerCalc implements PowerCalc {
             int temp = rand.nextInt(biggest-smallest)+smallest;
             result.add(temp);
         }
-        System.out.println(result);
+        //System.out.println(result);
         return result;
     }
 }
