@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -97,22 +98,38 @@ public class Java8PowerCalc implements PowerCalc{
 
     @Override
     public int getNumOccurrences(int thisNumber, List<Integer> inThisList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        long count = 0;
+        count = inThisList.stream().filter(n -> n==thisNumber).count();
+        int result = (int)count;
+        return result;
     }
 
     @Override
     public List<Integer> addTwoLists(List<Integer> listA, List<Integer> listB) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int min = Math.min(listA.size(),listB.size());
+        List<Integer> result = IntStream.range(0,min).mapToObj(i -> listA.get(i)+listB.get(i)).collect(Collectors.toList());
+        if(listA.size()>min){
+            result.addAll(listA.subList(min, listA.size()));
+        }else if(listB.size()>min){
+            result.addAll(listB.subList(min, listB.size()));
+        }
+        return result;
     }
 
     @Override
     public Map<Integer, Integer> mapTheseLists(List<Integer> listOfKeys, List<Integer> listOfValues) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map<Integer, Integer> result = IntStream.range(0, listOfKeys.size()).boxed().collect(Collectors.toMap(i -> listOfKeys.get(i), i -> listOfValues.get(i)));
+        return result;
     }
 
     @Override
     public List<Integer> getRandomNumbers(int smallest, int biggest, int thisMany) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Integer> result = new Random().ints(thisMany,smallest,biggest).boxed().collect(Collectors.toList());
+        return result;
     }
 
     
